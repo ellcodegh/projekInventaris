@@ -5,14 +5,14 @@ $kode = mysqli_real_escape_string($koneksi, $_POST['kode_barang']);
 $nama = mysqli_real_escape_string($koneksi, $_POST['nama_barang']);
 htmlspecialchars($_POST['nama_barang']);
 
-$kode = $_POST['kode_barang'];
-$nama = $_POST['nama_barang'];
-$satuan = $_POST['satuan'];
-$hb = $_POST['harga_beli'];
-$hj = $_POST['harga_jual'];
-$jumlah = $_POST['jumlah'];
-$tanggal = $_POST['tanggal_masuk'];
-$ket = $_POST['keterangan'];
+$kode       = $_POST['kode_barang'];
+$nama       = $_POST['nama_barang'];
+$satuan     = $_POST['satuan'];
+$hb         = $_POST['harga_beli'];
+$hj         = $_POST['harga_jual'];
+$jumlah     = $_POST['jumlah'];
+$tanggal    = $_POST['tanggal_masuk'];
+$ket        = $_POST['keterangan'];
 
 $foto = $_FILES['foto']['name'];
 $tmp = $_FILES['foto']['tmp_name'];
