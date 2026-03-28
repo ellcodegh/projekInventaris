@@ -3,8 +3,14 @@ include "session.php";
 include "koneksi.php";
 
 $id = $_GET['id'];
-$data = mysqli_query($koneksi, "SELECT * FROM barang WHERE id_barang='$id'");
-$row = mysqli_fetch_assoc($data);
+$sql = "SELECT * FROM barang WHERE id_barang = ?";
+$stmt = $koneksi->prepare($sql);
+$stmt->execute([$id]);
+$row = $stmt->fetch();
+
+if (!$row) {
+    die("Data tidak ditemukan!");
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +33,8 @@ $row = mysqli_fetch_assoc($data);
 
             <form method="POST" action="proses_edit.php" enctype="multipart/form-data">
 
-            <input type="hidden" name="id" value="<?= $row['id_barang']; ?>">
-
+            <input type="hidden" name="id_barang" value="<?= $row['id_barang']; ?>">
+            
             <div class="row">
 
                 <div class="col-md-6 mb-3">

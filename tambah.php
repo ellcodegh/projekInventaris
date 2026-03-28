@@ -1,7 +1,6 @@
 <?php
 include "session.php";
 include "koneksi.php";
-$data = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY id_barang DESC");
 ?>
 
 <!DOCTYPE html>

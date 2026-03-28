@@ -1,7 +1,12 @@
 <?php
 include "session.php";
 include "koneksi.php";
-$data = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY id_barang DESC");
+try {
+    $query = "SELECT * FROM barang ORDER BY id_barang DESC";
+    $data = $koneksi->query($query);
+} catch (PDOException $e) {
+    die("Gagal mengambil data: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +41,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY id_barang DESC");
                 </tr>
             </thead>
             <tbody>
-                <?php $no=1; while($row=mysqli_fetch_assoc($data)){ ?>
+                <?php $no=1; while($row=$data->fetch()){ ?>
                 <tr>
                     <td>
                         <?= $no++; ?>
