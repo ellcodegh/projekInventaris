@@ -1,13 +1,12 @@
 <?php
 session_start();
-include "koneksi.php"; // Pastikan ini sudah pakai versi PDO yang tadi
+include "koneksi.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
     try {
-        // 1. Prepared Statement: Gunakan placeholder (:user) untuk keamanan
         $sql  = "SELECT * FROM admin WHERE username = :user";
         $stmt = $koneksi->prepare($sql);
         
@@ -15,10 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute(['user' => $username]);
         $user = $stmt->fetch();
 
-        // 3. Validasi: Cek apakah user ada
         if ($user) {
-            // Cek password (Jika kamu pakai password_hash, gunakan password_verify)
-            // Contoh sederhana jika masih teks biasa (tidak disarankan):
             if ($password == $user['password']) {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $user['username'];

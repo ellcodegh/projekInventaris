@@ -15,7 +15,6 @@ if (preg_match('/[0-9]/', $satuan)) {
     exit;
 }
 
-// Upload foto
 $foto = $_FILES['foto']['name'];
 $tmp  = $_FILES['foto']['tmp_name'];
 
@@ -30,12 +29,10 @@ if ($_FILES['foto']['size'] > 2000000) {
     die("Ukuran file terlalu besar!");
 }
 
-// Bikin nama baru biar tidak bentrok
 $nama_foto_baru = uniqid() . '.' . $ext;
 
 move_uploaded_file($tmp, "upload/" . $nama_foto_baru);
 
-// INSERT pakai PDO
 $sql = "INSERT INTO barang 
 (kode_barang, nama_barang, satuan, harga_beli, harga_jual, jumlah, tanggal_masuk, keterangan, foto) 
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
