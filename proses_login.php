@@ -21,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($password == $user['password']) {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $user['username'];
-
-                //setcookie("username", $user['username'], time() + 3600, "/");
+                
                 header("Location: index.php");
                 exit();
             } else {
