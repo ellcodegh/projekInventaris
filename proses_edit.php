@@ -16,7 +16,6 @@ if (preg_match('/[0-9]/', $satuan)) {
     exit;
 }
 
-// CEK apakah upload foto baru
 if ($_FILES['foto']['name'] != '') {
 
     $foto = $_FILES['foto']['name'];
@@ -33,7 +32,6 @@ if ($_FILES['foto']['name'] != '') {
         die("Ukuran file terlalu besar!");
     }
 
-    // bikin nama unik
     $nama_foto_baru = uniqid() . '.' . $ext;
 
     move_uploaded_file($tmp, "upload/" . $nama_foto_baru);
