@@ -6,11 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
+    if (isset($_POST["remember"])) { 
+        setcookie("username", $username, time() + (86400 * 7), "/"); 
+    }
+
     try {
         $sql  = "SELECT * FROM admin WHERE username = :user";
         $stmt = $koneksi->prepare($sql);
         
-        // 2. Bind parameter dan eksekusi
         $stmt->execute(['user' => $username]);
         $user = $stmt->fetch();
 
@@ -19,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $user['username'];
 
+                //setcookie("username", $user['username'], time() + 3600, "/");
                 header("Location: index.php");
                 exit();
             } else {
