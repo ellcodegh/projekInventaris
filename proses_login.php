@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $user['username'];
                 
+            if (isset($_POST['remember'])) {
+                setcookie("username", $user['username'], time() + (86400), "/");}
+                
                 header("Location: index.php");
                 exit();
             } else {
