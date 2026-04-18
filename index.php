@@ -55,7 +55,9 @@ try {
                     <td>
                         <?= $row['jumlah']; ?>
                     </td>
-                    <td><img src="upload/<?= $row['foto']; ?>" width="70"></td>
+                    <td>
+                        <img src="upload/thumb/<?= htmlspecialchars($row['foto']); ?>" width="70">
+                    </td>
                     <td>
                         <a href="edit.php?id=<?= $row['id_barang']; ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="hapus.php?id=<?= $row['id_barang']; ?>" class="btn btn-danger btn-sm"
